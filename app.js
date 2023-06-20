@@ -85,6 +85,29 @@ const section = document.querySelector(".section-center");
 window.addEventListener("DOMContentLoaded", function () {
   displayMenuItems(menu);
 });
+let checkCategory = [];
+const container = document.querySelector(".btn-container");
+menu.forEach(function (category) {
+  if (checkCategory.length == 0) {
+    checkCategory.push("all");
+  } else {
+    if (!checkCategory.includes(category.category)) {
+      checkCategory.push(category.category);
+    }
+  }
+});
+function createBtn(categories) {
+  categories.forEach(function (category) {
+    console.log(category);
+    let btn = document.createElement("button");
+    btn.setAttribute("class", "filter-btn");
+    btn.setAttribute("type", "button");
+    btn.setAttribute("data-id", category);
+    btn.innerText = category;
+    container.append(btn);
+  });
+}
+createBtn(checkCategory);
 const btns = document.querySelectorAll(".filter-btn");
 btns.forEach(function (btn) {
   btn.addEventListener("click", function (e) {
